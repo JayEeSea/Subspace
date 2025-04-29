@@ -114,13 +114,13 @@ dotnet run --project Subspace.Web
 | API Docs      | `https://localhost:xxxx/docs` or `/swagger` |
 | Admin Panel   | `https://localhost:yyyy/admin`             |
 
-## ✍️ Contributing
-
-PRs and ideas welcome! If you’re a Star Trek fan or full stack dev looking to contribute canonical data or improve the backend/frontend — warp in.
-
 ## 📜 License
 
 This project is open-source under the [MIT License](LICENSE).
+
+## Note:
+This public repository contains sample seed data to demonstrate Subspace's functionality.
+The complete episode and series seed data are retained privately.
 
 ---
 
