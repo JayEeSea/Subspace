@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subspace API - Swagger Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/docs.css">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css">
+</head>
+<body class="bg-gray-200 text-white">
+
+    <div class="header flex justify-between items-center px-4 py-2 bg-gray-900 text-white">
+        <div>
+            <a href="/" class="hover:underline">← Back to Home</a>
+        </div>
+        <div>
+            <a href="/docs/" class="hover:underline">View With ReDoc</a>
+        </div>
+    </div>
+
+    <div id="swagger-ui"></div>
+
+    <div class="footer text-center p-4">
+        Powered by Subspace API
+    </div>
+
+    <!-- Load Swagger UI -->
+    <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+
+    <!-- Initialise Swagger UI -->
+    <script>
+        // Detect environment
+        const isLocalhost = window.location.hostname === "localhost" || window.location.hostname.startsWith("127.");
+
+        const apiBaseUrl = isLocalhost
+            ? "http://localhost:5038"
+            : "https://api.subspaceapi.com"; // Prod URL
+
+        // Create Swagger UI
+        SwaggerUIBundle({
+            url: apiBaseUrl + "/swagger/v1/swagger.json",
+            dom_id: '#swagger-ui',
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIBundle.SwaggerUIStandalonePreset
+            ],
+            layout: "BaseLayout",
+            deepLinking: true,
+            docExpansion: "none", // collapse sections initially
+        });
+    </script>
+
+</body>
+</html>

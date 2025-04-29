@@ -1,0 +1,26 @@
+﻿@page
+@model ResetAuthenticatorModel
+@{
+    ViewData["Title"] = "Reset Authenticator Key";
+}
+
+<section class="flex-grow flex flex-col w-full max-w-2xl mx-auto p-6 bg-white dark:bg-gray-900 shadow rounded-lg">
+    <h2 class="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">@ViewData["Title"]</h2>
+
+    <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 space-y-8">
+        <div class="text-center">
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                Resetting your authenticator key will disable your current authenticator app until you reconfigure it with the new key.
+            </p>
+            <p class="text-red-600 dark:text-red-400 font-semibold mb-6">
+                Warning: You will have to configure your authenticator app again after resetting your key.
+            </p>
+
+            <form method="post">
+                <button type="submit" class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200">
+                    Reset Authenticator Key
+                </button>
+            </form>
+        </div>
+    </div>
+</section>

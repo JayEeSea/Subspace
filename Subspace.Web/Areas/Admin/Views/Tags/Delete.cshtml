@@ -1,0 +1,22 @@
+@model Subspace.Shared.Models.Tag
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-2xl font-bold mb-4 text-red-600 dark:text-red-400">Delete Tag</h1>
+
+<form asp-action="Delete" method="post" class="bg-white dark:bg-gray-900 p-6 shadow rounded">
+    <input type="hidden" asp-for="Id" />
+    <p class="mb-4 text-gray-700 dark:text-gray-300">
+        Are you sure you want to delete the tag: <strong class="text-gray-900 dark:text-gray-100">@Model.Name</strong>?
+    </p>
+    <div class="flex space-x-4">
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition-colors duration-200">
+            Yes, Delete
+        </button>
+        <a asp-area="Admin" asp-controller="Tags" asp-action="Index"
+           class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-sm font-medium rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
+            Cancel and go back
+        </a>
+    </div>
+</form>

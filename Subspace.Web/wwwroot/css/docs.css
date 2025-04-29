@@ -1,0 +1,298 @@
+﻿/* css */
+/* Apply dark mode only if user prefers it */
+@media (prefers-color-scheme: dark) {
+    /* Main backgrounds */
+    body,
+    .redoc-wrap,
+    .menu-content,
+    .menu-content label,
+    .menu-content span,
+    .api-content,
+    .sc-bdVaJa,
+    .sc-fjdhpX {
+        background: #18181b !important;
+        color: #f4f4f5 !important;
+    }
+
+        /* Headings */
+        .redoc-wrap h1,
+        .redoc-wrap h2,
+        .redoc-wrap h3,
+        .redoc-wrap h4,
+        .redoc-wrap h5,
+        .redoc-wrap h6 {
+            color: #f4f4f5 !important;
+        }
+
+        /* Sidebar menu */
+        .menu-content,
+        .menu-content > div,
+        .menu-content label,
+        .menu-content span,
+        .menu-content .active {
+            background: #18181b !important;
+            color: #f4f4f5 !important;
+        }
+
+            /* Sidebar section titles */
+            .menu-content .section-title {
+                color: #a1a1aa !important;
+            }
+
+            /* Menu item hover/active */
+            .menu-content .active,
+            .menu-content .active span,
+            .menu-content .active label {
+                background: #27272a !important;
+                color: #f4f4f5 !important;
+            }
+
+            .menu-content .menu-item:hover {
+                background: #27272a !important;
+                color: #f4f4f5 !important;
+            }
+
+        /* Links */
+        a,
+        .redoc-wrap a {
+            color: #38bdf8 !important;
+        }
+
+        /* Code blocks */
+        pre,
+        code,
+        .redoc-wrap pre,
+        .redoc-wrap code,
+        .sc-ksYbfQ,
+        .sc-hSdWYo {
+            background: #27272a !important;
+            color: #f4f4f5 !important;
+            border-radius: 4px;
+        }
+
+        /* Inline code */
+        .redoc-wrap code {
+            background: #27272a !important;
+            color: #f4f4f5 !important;
+        }
+
+        /* Tables */
+        table,
+        .redoc-wrap table {
+            background: #18181b !important;
+            color: #f4f4f5 !important;
+        }
+
+        th,
+        .redoc-wrap th {
+            background: #27272a !important;
+            color: #f4f4f5 !important;
+        }
+
+        td,
+        .redoc-wrap td {
+            background: #18181b !important;
+            color: #f4f4f5 !important;
+        }
+
+        tr:nth-child(even),
+        .redoc-wrap tr:nth-child(even) {
+            background: #232326 !important;
+        }
+
+    /* Parameters, schema, and type boxes */
+    .sc-jrsJCI,
+    .sc-hSdWYo,
+    .sc-dnqmqq,
+    .sc-ksYbfQ,
+    .sc-cSHVUG {
+        background: #232326 !important;
+        color: #f4f4f5 !important;
+    }
+
+    /* More params */
+    .sc-Nxspf,
+    .sc-ddjGP,
+    .lmPAIU,
+    .dEQDjv {
+        background: #232326 !important;
+        color: #f4f4f5 !important;
+    }
+
+    /* HTTP response status codes */
+    .sc-eMigcr,
+    .sc-iwsKbI {
+        background: #232326 !important;
+        color: #f4f4f5 !important;
+    }
+
+    /* HTTP method badges */
+    .http-verb {
+        background: #3b82f6 !important;
+        color: #f4f4f5 !important;
+    }
+
+        .http-verb.get {
+            background: #22c55e !important;
+        }
+
+        .http-verb.post {
+            background: #f59e42 !important;
+        }
+
+        .http-verb.put {
+            background: #eab308 !important;
+        }
+
+        .http-verb.delete {
+            background: #ef4444 !important;
+        }
+
+    /* Response examples */
+    .example-response,
+    .sc-jrsJCI {
+        background: #232326 !important;
+        color: #f4f4f5 !important;
+    }
+
+    /* Search input */
+    .search-input,
+    .sc-cSHVUG input {
+        background: #232326 !important;
+        color: #f4f4f5 !important;
+        border: 1px solid #3f3f46 !important;
+    }
+
+    /* Scrollbar (Webkit) */
+    ::-webkit-scrollbar {
+        background: #232326;
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #3f3f46;
+        border-radius: 4px;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #52525b;
+        }
+
+    /* Miscellaneous */
+    .sc-fjdhpX,
+    .sc-bdVaJa {
+        background: #18181b !important;
+        color: #f4f4f5 !important;
+    }
+}
+
+/* Header */
+
+.header {
+    background-color: #111827;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+    .header a {
+        color: #2563eb;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+/* Swagger */
+/* Apply dark mode only if user prefers it */
+@media (prefers-color-scheme: dark) {
+    .swagger-ui .parameter__name {
+        color: #D3D3D3 !important;
+    }
+
+    .swagger-ui .parameter__type {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .prop-format {
+        color: #D3D3D3 !important;
+    }
+
+    .swagger-ui .parameter__in {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .opblock-summary-description {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .models-control {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .model-title__text {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .model-title {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .property .primitive {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .model-toggle {
+        color: #CBC3E3 !important;
+    }
+
+    p .opblock-description-wrapper {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .tab li:first-of-type {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .btn.btn-sm {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .tab li button.tablinks {
+        color: #CBC3E3 !important;
+    }
+
+    .swagger-ui .model-box-control, .swagger-ui .models-control, .swagger-ui .opblock-summary-control {
+        color: #CBC3E3 !important;
+    }
+
+    .info h2 {
+        color: #CBC3E3 !important;
+    }
+
+    /* OpenAPI Spec version badge (OAS 3.0) */
+    .swagger-ui .info .badge {
+        background-color: #4F46E5 !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 9999px !important;
+        padding: 2px 8px !important;
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+    }
+
+    /* API Version badge (1.0) */
+    .swagger-ui .info .version {
+        background-color: #6366F1 !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 9999px !important;
+        padding: 2px 8px !important;
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+    }
+    .swagger-ui .parameters-col_description input {
+        color: black;
+    }
+}

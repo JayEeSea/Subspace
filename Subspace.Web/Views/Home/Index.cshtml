@@ -1,0 +1,230 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section HeroSection {
+    <!-- Hero Section -->
+    <section class="w-full text-white py-20
+            bg-gradient-to-b from-blue-600 via-blue-700 to-blue-800
+            dark:bg-gradient-to-b dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-5xl font-extrabold mb-6 text-white dark:text-gray-100">Welcome to Subspace</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto text-white dark:text-gray-300">
+                An open API delivering data across the Star Trek universe — for developers, fans, and archivists alike.
+            </p>
+            <a href="/docs" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition" target="_blank">
+                View API Documentation
+            </a>
+        </div>
+    </section>
+}
+
+@section FeaturesSection {
+    <!-- Features Section -->
+    <section class="w-full bg-gray-100 dark:bg-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-12 text-center">
+
+                <div class="fade-slide-up p-6 bg-white dark:bg-gray-800 rounded shadow hover:shadow-lg transition">
+                    <div class="flex justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                            <path fill-rule="evenodd" d="M4.999,22v2h38.001v-2H4.999z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M10.811,36.853l-0.477-0.933	C7.013,35.187,5.001,29.067,5.001,24c0-0.48-0.06-2.4,0.643-3.32C5.938,20.293,6.397,20,7.001,20c0.004,0,0.009,0,0.015,0	C7.394,7.373,15.006,3,24.001,3c8.987,0,16.604,4.387,16.984,17c0.005,0,0.011,0,0.016,0c0.603,0,1.061,0.293,1.356,0.68	c0.404,0.533,0.529,1.253,0.585,1.773c0.06,0.573,0.059,1.16,0.059,1.547c0,5.013-2.043,11.173-5.341,11.92l-0.472,0.933	C33.575,43.733,29.282,47,24.001,47C18.717,47,14.423,43.733,10.811,36.853z" clip-rule="evenodd"></path>
+                            <path fill="#fff" fill-rule="evenodd" d="M33.83,32.08H14.171	l-5.407-5.04L8.001,22v-3c0-12.773,7.263-17,16-17s16,4.227,16,17v3l-0.764,5.04L33.83,32.08z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M13.49,32.813l-5.407-5.04	c-0.165-0.147-0.275-0.36-0.308-0.573l-0.764-5.053C7.003,22.107,7.001,22.053,7.001,22v-3c0-13.4,7.772-18,17-18	c9.221,0,17,4.613,17,18v3c0,0.053-0.004,0.107-0.012,0.147L40.225,27.2c-0.033,0.213-0.143,0.427-0.308,0.573l-5.407,5.04	c-0.184,0.173-0.428,0.267-0.68,0.267H14.171C13.918,33.08,13.674,32.987,13.49,32.813z M33.435,31.08l4.864-4.533l0.701-4.627V19	c0-12.133-6.752-16-15-16c-8.253,0-15,3.84-15,16v2.92l0.7,4.627l4.864,4.533H33.435z" clip-rule="evenodd"></path>
+                            <path fill="#fff" fill-rule="evenodd" d="M24.001,44	c-5.068,0-9.312-3.293-13-11c-2.635,0-5-5.48-5-11c0-1.053-0.011-3,1-3c1.429,0,2.785,5.093,4,8v-9c0-1.493,0.537-4,2-4	c3.725,0,6.569,2,11,2s7.275-2,11-2c1.463,0,2,2.507,2,4v9c1.215-2.907,2.571-8,4-8c1.011,0,1,1.947,1,3c0,5.52-2.365,11-5,11	C33.313,40.707,29.069,44,24.001,44z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M10.334,33.92	C7.013,33.187,5.001,27.067,5.001,22c0-0.48-0.06-2.4,0.643-3.32C5.938,18.293,6.397,18,7.001,18c0.321,0,0.607,0.093,0.843,0.227	c0.784,0.44,1.423,1.6,1.904,2.693l0.253,0.613V18c0-1.293,0.432-5,3-5c4.016,0,6.697,2,11,2c4.163,0,7.124-2,11-2	c2.587,0,3,3.76,3,5v3.533l0.26-0.64c0.481-1.093,1.097-2.213,1.896-2.667C40.393,18.093,40.678,18,41.001,18	c0.603,0,1.061,0.293,1.356,0.68c0.404,0.533,0.529,1.253,0.585,1.773c0.06,0.573,0.059,1.16,0.059,1.547	c0,5.013-2.043,11.173-5.341,11.92l-0.472,0.933C33.575,41.733,29.282,45,24.001,45c-5.284,0-9.577-3.267-13.189-10.147	L10.334,33.92z M36.098,32.573C36.265,32.227,36.615,32,37.001,32c1.556,0,4-4.373,4-10c0-0.573-0.023-1.053-0.063-1.413	l-0.056-0.333l-0.28,0.427c-0.245,0.44-0.555,1.093-0.917,2.013c-0.561,1.427-1.217,3.387-1.763,4.693	c-0.419,1-1.921,0.707-1.921-0.387v-9c0-1.68-0.647-3-1-3c-3.44,0-6.447,2-11,2c-4.623,0-7.432-2-11-2c-0.332,0-1,1.267-1,3v9	c0,1.093-1.504,1.387-1.923,0.387c-0.545-1.307-1.201-3.267-1.763-4.693c-0.345-0.88-0.649-1.52-0.897-1.973l-0.3-0.467L7.07,20.507	C7.027,20.853,7.001,21.333,7.001,22c0,5.573,2.412,10,4,10c0.384,0,0.735,0.227,0.901,0.573C15.521,40.133,19.499,43,24.001,43	C28.501,43,32.479,40.133,36.098,32.573z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M21.001,25v-3	c-3.152-0.627-5.621-2.253-8-4C14.402,20.92,17.037,23.267,21.001,25z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M18.001,25c1.104,0,2,0.893,2,2	s-0.896,2-2,2s-2-0.893-2-2S16.897,25,18.001,25z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M20.001,37c0-0.547,0.448-1,1-1h6	c0.551,0,1,0.453,1,1s-0.449,1-1,1h-6C20.449,38,20.001,37.547,20.001,37z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M27.001,25v-3	c3.152-0.627,5.621-2.253,8-4C33.599,20.92,30.965,23.267,27.001,25z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M30.001,25c-1.104,0-2,0.893-2,2	s0.896,2,2,2c1.104,0,2-0.893,2-2S31.105,25,30.001,25z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-200">Series Overview</h3>
+                    <p class="text-gray-600 dark:text-gray-400" ">Browse all Star Trek series and seasons with metadata.</p>
+                </div>
+
+                <div class="fade-slide-up p-6 bg-white dark:bg-gray-800 rounded shadow hover:shadow-lg transition">
+                    <div class="flex justify-center mb-4">
+                        <svg class="fill-black dark:fill-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 26 26">
+                            <path d="M 4 0 C 3.398438 0 3 0.398438 3 1 L 3 4 C 2.398438 4 2 4.398438 2 5 L 2 5.125 C 1.988281 5.128906 1.980469 5.121094 1.96875 5.125 C 1.546875 5.230469 1.078125 5.453125 0.6875 5.875 C 0.296875 6.296875 0.0625 6.902344 0.0625 7.59375 C 0.0625 9.222656 0.898438 10.820313 1.6875 12.09375 C 1.792969 12.261719 1.894531 12.40625 2 12.5625 L 2 16.6875 L 1.1875 18 C 0.886719 18.5 1.207031 19 1.90625 19 L 20.1875 19 C 20.886719 19 21.207031 18.5 20.90625 18 L 20.09375 16.6875 L 20.09375 6.9375 L 20.59375 6.9375 C 20.605469 6.941406 20.613281 6.964844 20.65625 7 C 20.765625 7.09375 21.070313 7.421875 21.15625 8.5625 C 21.457031 14.003906 21.972656 16.914063 22.53125 18.75 C 23.089844 20.585938 23.671875 21.296875 23.90625 22 L 23.90625 22.03125 C 24.132813 22.640625 24.109375 23.179688 23.90625 23.5 C 23.703125 23.820313 23.253906 24.15625 22 24.15625 L 20 24.15625 L 20 20 L 2 20 L 2 25 C 2 25.601563 2.398438 26 3 26 L 19 26 L 19 26.0625 L 22 26.0625 C 23.648438 26.0625 24.878906 25.480469 25.5 24.5 C 26.117188 23.527344 26.050781 22.390625 25.6875 21.40625 C 25.683594 21.398438 25.691406 21.382813 25.6875 21.375 C 25.324219 20.296875 24.832031 19.789063 24.34375 18.1875 C 23.851563 16.574219 23.359375 13.792969 23.0625 8.4375 C 22.949219 6.980469 22.496094 6.070313 21.90625 5.5625 C 21.609375 5.308594 21.277344 5.15625 21.03125 5.09375 C 20.8125 5.039063 20.648438 5.0625 20.59375 5.0625 L 20.09375 5.0625 L 20.09375 5 C 20.09375 4.398438 19.695313 4 19.09375 4 L 19 4 L 19 1 C 19 0.398438 18.601563 0 18 0 Z M 5 2 L 17 2 L 17 7 L 5 7 Z M 6 3 L 6 6 L 10 6 L 10 3 Z M 12.5 4.90625 C 12.167969 4.90625 11.90625 5.167969 11.90625 5.5 C 11.90625 5.832031 12.167969 6.09375 12.5 6.09375 C 12.832031 6.09375 13.09375 5.832031 13.09375 5.5 C 13.09375 5.167969 12.832031 4.90625 12.5 4.90625 Z M 14.5 4.90625 C 14.167969 4.90625 13.90625 5.167969 13.90625 5.5 C 13.90625 5.832031 14.167969 6.09375 14.5 6.09375 C 14.832031 6.09375 15.09375 5.832031 15.09375 5.5 C 15.09375 5.167969 14.832031 4.90625 14.5 4.90625 Z M 2 7.25 L 2 7.96875 C 1.980469 7.84375 1.9375 7.703125 1.9375 7.59375 C 1.9375 7.394531 1.964844 7.3125 2 7.25 Z M 5 9 L 11 9 L 11 9.78125 C 10.910156 9.714844 10.8125 9.65625 10.6875 9.65625 L 10.1875 9.65625 C 10.078125 9.65625 10.027344 9.679688 9.96875 9.71875 C 9.917969 9.753906 9.886719 9.824219 9.84375 9.875 C 9.757813 9.746094 9.589844 9.65625 9.40625 9.65625 L 8.90625 9.65625 C 8.796875 9.65625 8.746094 9.679688 8.6875 9.71875 C 8.640625 9.75 8.601563 9.796875 8.5625 9.84375 C 8.46875 9.742188 8.34375 9.65625 8.1875 9.65625 L 7.6875 9.65625 C 7.578125 9.65625 7.527344 9.679688 7.46875 9.71875 C 7.433594 9.742188 7.40625 9.777344 7.375 9.8125 C 7.28125 9.71875 7.148438 9.65625 7 9.65625 L 6.5 9.65625 C 6.390625 9.65625 6.339844 9.679688 6.28125 9.71875 C 6.222656 9.757813 6.171875 9.820313 6.125 9.875 C 6.042969 9.796875 5.9375 9.75 5.8125 9.75 L 5.3125 9.75 C 5.203125 9.75 5.148438 9.777344 5.09375 9.8125 C 5.0625 9.832031 5.03125 9.851563 5 9.875 Z M 15.5 9 C 16.898438 9 18 10.101563 18 11.5 C 18 12.898438 16.898438 14 15.5 14 C 14.101563 14 13 12.898438 13 11.5 C 13 10.101563 14.101563 9 15.5 9 Z M 6.5625 10.15625 L 7 10.15625 C 7.015625 10.15625 7.015625 10.132813 7.03125 10.15625 C 7.046875 10.179688 7.0625 10.253906 7.0625 10.3125 L 7.0625 12.71875 C 7.039063 12.730469 7.011719 12.75 7 12.75 L 6.5 12.75 C 6.484375 12.75 6.484375 12.773438 6.46875 12.75 C 6.453125 12.726563 6.4375 12.652344 6.4375 12.59375 L 6.4375 10.3125 C 6.4375 10.296875 6.464844 10.230469 6.5 10.1875 C 6.515625 10.167969 6.554688 10.160156 6.5625 10.15625 Z M 7.75 10.15625 L 8.1875 10.15625 C 8.203125 10.15625 8.203125 10.132813 8.21875 10.15625 C 8.234375 10.179688 8.25 10.253906 8.25 10.3125 L 8.25 12.75 L 7.6875 12.75 C 7.671875 12.726563 7.65625 12.652344 7.65625 12.59375 L 7.65625 10.3125 C 7.65625 10.296875 7.683594 10.230469 7.71875 10.1875 C 7.734375 10.167969 7.742188 10.160156 7.75 10.15625 Z M 8.90625 10.15625 L 9.40625 10.15625 C 9.421875 10.179688 9.4375 10.253906 9.4375 10.3125 L 9.4375 12.75 L 8.90625 12.75 C 8.890625 12.75 8.890625 12.773438 8.875 12.75 C 8.859375 12.726563 8.84375 12.652344 8.84375 12.59375 L 8.84375 10.3125 C 8.84375 10.296875 8.871094 10.230469 8.90625 10.1875 C 8.914063 10.175781 8.898438 10.164063 8.90625 10.15625 Z M 10.25 10.15625 L 10.6875 10.15625 C 10.703125 10.15625 10.703125 10.132813 10.71875 10.15625 C 10.734375 10.179688 10.75 10.253906 10.75 10.3125 L 10.75 12.59375 C 10.75 12.609375 10.722656 12.675781 10.6875 12.71875 C 10.671875 12.738281 10.664063 12.746094 10.65625 12.75 L 10.1875 12.75 C 10.171875 12.726563 10.15625 12.652344 10.15625 12.59375 L 10.15625 10.3125 C 10.15625 10.296875 10.183594 10.230469 10.21875 10.1875 C 10.234375 10.167969 10.242188 10.160156 10.25 10.15625 Z M 5.3125 10.25 L 5.8125 10.25 C 5.828125 10.273438 5.84375 10.347656 5.84375 10.40625 L 5.84375 12.71875 C 5.832031 12.722656 5.820313 12.75 5.8125 12.75 L 5.34375 12.75 C 5.339844 12.746094 5.320313 12.757813 5.3125 12.75 C 5.304688 12.742188 5.320313 12.730469 5.3125 12.71875 C 5.277344 12.675781 5.25 12.609375 5.25 12.59375 L 5.25 10.34375 C 5.242188 10.355469 5.25 10.371094 5.25 10.3125 C 5.257813 10.300781 5.269531 10.292969 5.28125 10.28125 C 5.292969 10.269531 5.300781 10.257813 5.3125 10.25 Z M 9.84375 13.0625 C 9.929688 13.164063 10.039063 13.25 10.1875 13.25 L 10.6875 13.25 C 10.796875 13.25 10.878906 13.226563 10.9375 13.1875 C 10.960938 13.171875 10.980469 13.144531 11 13.125 L 11 14 L 5 14 L 5 13.125 C 5.019531 13.144531 5.039063 13.171875 5.0625 13.1875 C 5.121094 13.226563 5.203125 13.25 5.3125 13.25 L 5.8125 13.25 C 5.960938 13.25 6.085938 13.203125 6.1875 13.125 C 6.277344 13.199219 6.378906 13.25 6.5 13.25 L 7 13.25 C 7.15625 13.25 7.269531 13.179688 7.375 13.09375 C 7.457031 13.179688 7.554688 13.25 7.6875 13.25 L 8.3125 13.25 C 8.421875 13.25 8.472656 13.226563 8.53125 13.1875 C 8.554688 13.171875 8.574219 13.144531 8.59375 13.125 C 8.683594 13.199219 8.785156 13.25 8.90625 13.25 L 9.5 13.25 C 9.609375 13.25 9.660156 13.226563 9.71875 13.1875 C 9.765625 13.15625 9.804688 13.109375 9.84375 13.0625 Z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-200">Episode Lookup</h3>
+                    <p id="episodeRange" class="text-gray-600 dark:text-gray-400" ">Loading episode information...</p>
+                </div>
+
+                <div class="fade-slide-up p-6 bg-white dark:bg-gray-800 rounded shadow hover:shadow-lg transition">
+                    <div class="flex justify-center mb-4">
+                        <svg class="fill-black dark:fill-white" fill="#000000" width="100px" height="100px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30.639 26.361l-6.211-23.183c-0.384-1.398-1.644-2.408-3.139-2.408-0.299 0-0.589 0.040-0.864 0.116l0.023-0.005-2.896 0.776c-0.23 0.065-0.429 0.145-0.618 0.243l0.018-0.008c-0.594-0.698-1.472-1.14-2.453-1.143h-2.999c-0.76 0.003-1.457 0.27-2.006 0.713l0.006-0.005c-0.543-0.438-1.24-0.705-1.999-0.708h-3.001c-1.794 0.002-3.248 1.456-3.25 3.25v24c0.002 1.794 1.456 3.248 3.25 3.25h3c0.76-0.003 1.457-0.269 2.006-0.712l-0.006 0.005c0.543 0.438 1.24 0.704 1.999 0.708h2.999c1.794-0.002 3.248-1.456 3.25-3.25v-13.053l3.717 13.873c0.382 1.398 1.641 2.408 3.136 2.408 0.3 0 0.59-0.041 0.866-0.117l-0.023 0.005 2.898-0.775c1.398-0.386 2.407-1.646 2.407-3.141 0-0.298-0.040-0.587-0.115-0.862l0.005 0.023zM19.026 10.061l4.346-1.165 3.494 13.042-4.345 1.164zM18.199 4.072l2.895-0.775c0.056-0.015 0.121-0.023 0.188-0.023 0.346 0 0.639 0.231 0.731 0.547l0.001 0.005 0.712 2.656-4.346 1.165-0.632-2.357v-0.848c0.094-0.179 0.254-0.312 0.446-0.37l0.005-0.001zM11.5 3.25h2.998c0.412 0.006 0.744 0.338 0.75 0.749v2.75l-4.498 0.001v-2.75c0.006-0.412 0.338-0.744 0.749-0.75h0.001zM8.25 22.75h-4.5v-13.5l4.5-0.001zM10.75 9.25l4.498-0.001v13.501h-4.498zM4.5 3.25h3c0.412 0.006 0.744 0.338 0.75 0.749v2.75l-4.5 0.001v-2.75c0.006-0.412 0.338-0.744 0.749-0.75h0.001zM7.5 28.75h-3c-0.412-0.006-0.744-0.338-0.75-0.749v-2.751h4.5v2.75c-0.006 0.412-0.338 0.744-0.749 0.75h-0.001zM14.498 28.75h-2.998c-0.412-0.006-0.744-0.338-0.75-0.749v-2.751h4.498v2.75c-0.006 0.412-0.338 0.744-0.749 0.75h-0.001zM27.693 27.928l-2.896 0.775c-0.057 0.015-0.122 0.024-0.189 0.024-0.139 0-0.269-0.037-0.381-0.102l0.004 0.002c-0.171-0.099-0.298-0.259-0.35-0.45l-0.001-0.005-0.711-2.655 4.345-1.164 0.712 2.657c0.015 0.056 0.023 0.12 0.023 0.186 0 0.347-0.232 0.639-0.549 0.73l-0.005 0.001z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-200">Tags and Categories</h3>
+                    <p id="randomTags" class="text-gray-600 dark:text-gray-400">Loading tags...</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+}
+
+@section SearchSection {
+    <!-- Search Section -->
+    <section class="w-full flex flex-col flex-grow bg-gradient-to-b from-[#0096ff] to-[#0070cc] dark:from-[#005bb5] dark:to-[#004494] text-white">
+        <div class="flex-grow flex items-center justify-center px-4">
+            <div class="max-w-4xl w-full text-center flex flex-col items-center py-24">
+                <h2 class="text-4xl font-extrabold mb-8">Try It Now</h2>
+                <form id="searchForm" class="flex flex-col md:flex-row justify-center items-center gap-4 mb-8 w-full relative">
+                    <!-- Search Input -->
+                    <div class="relative flex items-center justify-center w-full md:w-1/2">
+                        <input id="searchQuery" type="text" placeholder="Enter search term..."
+                               class="w-full px-4 py-3 rounded-md border border-blue-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:placeholder-gray-300 transition-all duration-500 focus:outline-none focus:ring-0 border-b-4 border-transparent focus:border-blue-500 transform hover:scale-105 focus:scale-105" />
+                        <button id="clearSearch" type="button" class="hidden absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 transition-all duration-500 ease-in-out hover:text-blue-500 hover:scale-125" aria-label="Clear search">✖</button>
+                    </div>
+                    <!-- Dropdown -->
+                    <div class="relative flex items-center justify-center">
+                        <select id="searchType"
+                                class="px-4 py-3 rounded-md border border-blue-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-500 focus:outline-none focus:ring-0 border-b-4 border-transparent focus:border-blue-500 transform hover:scale-105 focus:scale-105">
+                            <option value="episodes">Episode Name</option>
+                            <option value="series">Series Name</option>
+                            <option value="tags">Tag Name</option>
+                        </select>
+                    </div>
+                    <!-- Search Button -->
+                    <div class="relative flex items-center justify-center">
+                        <button type="submit"
+                                class="bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-300 font-semibold py-3 px-8 rounded-md transition-all duration-500 ease-in-out transform hover:scale-105 hover:bg-blue-100 dark:hover:bg-gray-700 hover:shadow-blue-400/50">
+                            Search
+                        </button>
+                    </div>
+                </form>
+                <div id="searchResult" class="w-full mt-8 px-6 py-4 bg-blue-100 dark:bg-gray-700 text-gray-800 rounded shadow-md hidden overflow-x-auto">
+                    <!-- Search results will appear here -->
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            await loadEpisodeRange();
+            await loadRandomTags();
+        });
+
+        async function loadEpisodeRange() {
+            try {
+                const response = await fetch('/episodes/range');
+                const data = await response.json();
+                if (data.oldest && data.newest) {
+                    document.getElementById('episodeRange').innerText = `Retrieve detailed episode information, from "${data.oldest}" to "${data.newest}".`;
+                } else {
+                    document.getElementById('episodeRange').innerText = "Retrieve detailed episode information across the Star Trek universe.";
+                }
+            } catch (error) {
+                console.error('Error fetching episode range:', error);
+                document.getElementById('episodeRange').innerText = "Retrieve detailed episode information across the Star Trek universe.";
+            }
+        }
+
+        async function loadRandomTags() {
+            try {
+                const response = await fetch(`/tags/random?ts=${Date.now()}`);
+                const tags = await response.json();
+                if (tags.length === 2) {
+                    document.getElementById('randomTags').innerText = `Search episodes by tags like "${tags[0]}" or "${tags[1]}".`;
+                } else {
+                    document.getElementById('randomTags').innerText = "Search episodes by tags such as 'Time Travel' or 'Borg'.";
+                }
+            } catch (error) {
+                console.error('Error fetching random tags:', error);
+                document.getElementById('randomTags').innerText = "Search episodes by tags such as 'Time Travel' or 'Borg'.";
+            }
+        }
+
+        document.getElementById('searchForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const query = document.getElementById('searchQuery').value.trim();
+            const type = document.getElementById('searchType').value;
+            const resultDiv = document.getElementById('searchResult');
+
+                    if (query.length < 3) {
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML =
+                '<p class="text-gray-600 dark:text-gray-200">❗ Please enter at least 3 characters to search.</p>';
+            return;
+        }
+
+            let url = '';
+            if (type === 'episodes') url = `/episodes/search?name=${encodeURIComponent(query)}`;
+            else if (type === 'series') url = `/series/search?name=${encodeURIComponent(query)}`;
+            else if (type === 'tags') url = `/tags/search?name=${encodeURIComponent(query)}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                resultDiv.classList.remove('hidden');
+                if (data.length === 0) {
+                    resultDiv.innerHTML = '<p class="text-gray-600 dark:text-gray-200">No results found.</p>';
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="flex flex-col space-y-4">
+                            ${data.map(item => `
+                                        <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 text-left transition-transform transform hover:scale-101 hover:shadow-lg">
+                                            <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                                                ${item.title || item.name}
+                                            </h3>
+                                            ${item.series ? `<p class="text-gray-600 dark:text-gray-300 mb-1">Series: ${item.series}</p>` : ''}
+                                            ${item.abbreviation ? `<p class="text-gray-600 dark:text-gray-300 mb-1">Abbreviation: ${item.abbreviation}</p>` : ''}
+                                            <p class="text-gray-400 dark:text-gray-400 text-sm">ID: ${item.id}</p>
+                                        </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error searching:', error);
+                resultDiv.classList.remove('hidden');
+                resultDiv.innerText = "❗ An error occurred while searching. Please try again.";
+            }
+        });
+
+        const searchQueryInput = document.getElementById('searchQuery');
+        const clearSearchButton = document.getElementById('clearSearch');
+
+        searchQueryInput.addEventListener('input', function () {
+            clearSearchButton.classList.toggle('hidden', this.value.length === 0);
+        });
+
+                clearSearchButton.addEventListener('click', function () {
+            searchQueryInput.value = '';
+            clearSearchButton.classList.add('hidden');
+            searchQueryInput.focus();
+
+            // Clear and hide search results
+            const resultDiv = document.getElementById('searchResult');
+            resultDiv.innerHTML = '';
+            resultDiv.classList.add('hidden');
+        });
+
+            document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-slide-up').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+}

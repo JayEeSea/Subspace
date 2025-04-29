@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Subspace.Shared.Models.Tag>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Tags";
+    var searchTerm = ViewData["SearchTerm"] as string ?? string.Empty;
+    var currentPage = ViewData["CurrentPage"] as int? ?? 1;
+    var totalPages = ViewData["TotalPages"] as int? ?? 1;
+}
+
+<div class="p-6 bg-white dark:bg-gray-900 shadow rounded">
+    <div class="mb-4">
+        <div class="flex justify-between items-center">
+            <a asp-area="" asp-controller="Admin" asp-action="Index"
+               class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-sm font-medium rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
+                ← Back to Admin Dashboard
+            </a>
+        </div>
+    </div>
+
+    <h1 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Manage Tags</h1>
+
+    <form asp-action="Index" method="get" class="mb-4 flex flex-wrap items-end gap-4">
+        <div>
+            <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Search by Name</label>
+            <input type="text" id="search" name="search" value="@searchTerm" placeholder="e.g. Time Travel"
+                   class="w-64 px-3 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        </div>
+        <div>
+            <button type="submit" class="mt-5 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors duration-200">
+                Search
+            </button>
+        </div>
+    </form>
+
+    <a asp-action="Create" class="inline-block mb-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-200">
+        + Add New Tag
+    </a>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+            <thead class="bg-gray-100 dark:bg-gray-800 text-left">
+                <tr>
+                    <th class="px-4 py-2 text-gray-700 dark:text-gray-300">Name</th>
+                    <th class="px-4 py-2 text-gray-700 dark:text-gray-300">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-100 dark:divide-gray-700">
+                @foreach (var tag in Model)
+                {
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
+                        <td class="px-4 py-2 text-gray-900 dark:text-gray-100">@tag.Name</td>
+                        <td class="px-4 py-2 space-x-2">
+                            <a asp-action="Edit" asp-route-id="@tag.Id" class="text-blue-600 dark:text-blue-400 hover:underline transition-colors duration-200">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@tag.Id" class="text-red-600 dark:text-red-400 hover:underline transition-colors duration-200">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (totalPages > 1)
+    {
+        <nav class="mt-8 flex justify-center">
+            <ul class="inline-flex flex-wrap items-center gap-1">
+                <li>
+                    @if (currentPage > 1)
+                    {
+                        <a asp-action="Index" asp-route-page="@(currentPage - 1)"
+                           class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors duration-200">
+                            &laquo; Prev
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-400 cursor-not-allowed">
+                            &laquo; Prev
+                        </span>
+                    }
+                </li>
+
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li>
+                        @if (i == currentPage)
+                        {
+                            <span class="px-3 py-2 bg-blue-600 text-white rounded">
+                                @i
+                            </span>
+                        }
+                        else
+                        {
+                            <a asp-action="Index" asp-route-page="@i"
+                               class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors duration-200">
+                                @i
+                            </a>
+                        }
+                    </li>
+                }
+
+                <li>
+                    @if (currentPage < totalPages)
+                    {
+                        <a asp-action="Index" asp-route-page="@(currentPage + 1)"
+                           class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors duration-200">
+                            Next &raquo;
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-400 cursor-not-allowed">
+                            Next &raquo;
+                        </span>
+                    }
+                </li>
+            </ul>
+        </nav>
+    }
+</div>

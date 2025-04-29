@@ -1,0 +1,31 @@
+﻿@page
+@model Disable2faModel
+@{
+    ViewData["Title"] = "Disable Two-Factor Authentication";
+}
+
+<section class="flex-grow flex flex-col w-full max-w-2xl bg-white dark:bg-gray-900 p-8 shadow rounded-lg">
+    <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">@ViewData["Title"]</h2>
+
+    <form method="post" class="space-y-6">
+        <div class="text-center text-gray-700 dark:text-gray-300 mb-6">
+            <p>Are you sure you want to disable two-factor authentication? <br />This will make your account less secure.</p>
+        </div>
+
+        <div>
+            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
+                Disable 2FA
+            </button>
+        </div>
+
+        <div class="text-center">
+            <a asp-page="./TwoFactorAuthentication" class="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors duration-200">
+                Cancel
+            </a>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

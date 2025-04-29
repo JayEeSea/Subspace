@@ -1,0 +1,64 @@
+﻿/* ===== Custom Animations ===== */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.animate-fade-in-out {
+    animation: fadeInOut 3s forwards;
+}
+
+/* ===== Custom Styles ===== */
+.fade-slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+    .fade-slide-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* ===== TomSelect dark mode styles ===== */
+html.dark .ts-wrapper,
+html.dark .ts-dropdown,
+html.dark .ts-control,
+html.dark .ts-control input {
+    background-color: #374151 !important; /* Tailwind gray-700 */
+    color: #f3f4f6 !important; /* Tailwind gray-100 */
+    border-color: #4b5563 !important; /* Tailwind gray-600 */
+}
+
+    html.dark .ts-dropdown .ts-dropdown-content {
+        background-color: #1f2937 !important; /* Tailwind gray-800 */
+        color: #f3f4f6 !important;
+    }
+
+    html.dark .ts-dropdown .option {
+        background-color: #374151 !important;
+        color: #f3f4f6 !important;
+    }
+
+        html.dark .ts-dropdown .option.active,
+        html.dark .ts-dropdown .option.selected {
+            background-color: #2563eb !important; /* Tailwind blue-600 */
+            color: #fff !important;
+        }

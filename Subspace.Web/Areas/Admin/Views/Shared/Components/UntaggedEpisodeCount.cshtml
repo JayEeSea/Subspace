@@ -1,0 +1,11 @@
+﻿@using Microsoft.EntityFrameworkCore
+@inject Subspace.Shared.Data.SubspaceDbContext _context
+
+@{
+    var count = ViewData["UntaggedCount"] as int? ?? 0;
+    var display = count > 99 ? "99+" : count.ToString();
+}
+<span class="ml-1 text-xs bg-red-500 text-white rounded-full px-2 font-semibold"
+      style="padding-right:10px !important;">
+    @display
+</span>

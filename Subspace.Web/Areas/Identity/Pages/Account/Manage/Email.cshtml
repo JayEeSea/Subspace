@@ -1,0 +1,44 @@
+﻿@page
+@model EmailModel
+@{
+    ViewData["Title"] = "Email";
+}
+
+<section class="flex-grow flex flex-col w-full max-w-2xl bg-white dark:bg-gray-900 p-8 shadow rounded-lg">
+    <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">@ViewData["Title"]</h2>
+
+    <form id="email-form" method="post" class="space-y-6">
+        <div>
+            <label asp-for="Email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Current Email</label>
+            <input asp-for="Email" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm px-3 py-2 text-sm bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100" disabled />
+
+            @if (Model.IsEmailConfirmed)
+            {
+                <p class="text-green-600 dark:text-green-400 text-sm mt-2">Your email address is verified.</p>
+            }
+            else
+            {
+                <p class="text-red-600 dark:text-red-400 text-sm mt-2">Your email address is <strong>not verified</strong>. Please verify it!</p>
+            }
+        </div>
+
+        <div>
+            <label asp-for="Input.NewEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300">New Email</label>
+            <input asp-for="Input.NewEmail" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+            <span asp-validation-for="Input.NewEmail" class="text-sm text-red-500 dark:text-red-400 mt-1 block"></span>
+        </div>
+
+        <div class="flex space-x-4">
+            <button type="submit" class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200">
+                Change Email
+            </button>
+            <button type="submit" asp-page-handler="SendVerificationEmail" class="cursor-pointer border border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900 font-semibold px-6 py-3 rounded-md transition-colors duration-200">
+                Resend Verification
+            </button>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

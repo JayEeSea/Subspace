@@ -1,0 +1,36 @@
+﻿@model Subspace.Shared.Models.Episode
+
+@{
+    ViewData["Title"] = "Delete Episode";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-6 bg-white dark:bg-gray-800 shadow rounded">
+    <h1 class="text-2xl font-bold mb-6 text-red-600 dark:text-red-400">Delete Episode</h1>
+
+    <p class="mb-4 text-gray-700 dark:text-gray-300">
+        Are you sure you want to delete the following episode?
+    </p>
+
+    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded border border-gray-300 dark:border-gray-600 mb-6 text-gray-900 dark:text-gray-100">
+        <p><strong>Title:</strong> @Model.Title</p>
+        <p><strong>Series:</strong> @Model.Series?.Name (@Model.Series?.Abbreviation)</p>
+        <p><strong>Season:</strong> @Model.Season</p>
+        <p><strong>Episode #:</strong> @Model.EpisodeNumber</p>
+        <p><strong>Air Date:</strong> @Model.AirDate.ToString("yyyy-MM-dd")</p>
+    </div>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="flex space-x-4">
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+                Yes, Delete
+            </button>
+            <a asp-area="Admin" asp-controller="Episodes" asp-action="Index"
+               class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-sm font-medium rounded hover:bg-gray-100 dark:hover:bg-gray-700">
+                Cancel and go back
+            </a>
+        </div>
+    </form>
+</div>

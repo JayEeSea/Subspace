@@ -1,0 +1,37 @@
+﻿@page
+@model DeletePersonalDataModel
+@{
+    ViewData["Title"] = "Delete Account";
+}
+
+<section class="flex-grow flex flex-col w-full max-w-2xl bg-white dark:bg-gray-900 p-8 shadow rounded-lg">
+    <h2 class="text-2xl font-bold text-red-600 dark:text-red-400 mb-6">@ViewData["Title"]</h2>
+
+    <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 space-y-8">
+        <p class="text-gray-700 dark:text-gray-300">
+            This action will permanently delete your account and all associated data.
+            Please confirm your password to proceed.
+        </p>
+
+        <form method="post" class="space-y-6">
+            <div>
+                <label asp-for="Input.Password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <input asp-for="Input.Password" type="password" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                <span asp-validation-for="Input.Password" class="text-red-500 dark:text-red-400 text-sm mt-1 block"></span>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-200">
+                    Delete Account
+                </button>
+                <a asp-page="./PersonalData" class="inline-block bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-semibold py-2 px-4 rounded transition-colors duration-200">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

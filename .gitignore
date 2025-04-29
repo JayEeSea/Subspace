@@ -1,0 +1,46 @@
+## Ignore build results
+bin/
+obj/
+
+## Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Ignore ASP.NET Core secrets and settings
+appsettings.Development.json
+appsettings.Local.json
+appsettings.json
+secrets.json
+
+## Ignore Rider/VSCode settings
+.vs/
+.vscode/
+.idea/
+
+## Ignore publish directory
+publish/
+
+## Ignore Mac and Linux file system stuff
+.DS_Store
+*.swp
+*.swo
+
+## Ignore logs
+*.log
+
+## Ignore database migration dumps (if any)
+*.sql
+*.db
+
+## Ignore environment-specific files
+.env
+.env.*
+
+## Ignore developers planning docs and scripts
+planning/
+dev/
+
+## Ignore my TailwindCSS executable
+*.exe

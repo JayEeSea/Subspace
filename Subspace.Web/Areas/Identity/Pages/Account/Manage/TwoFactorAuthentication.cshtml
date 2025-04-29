@@ -1,0 +1,78 @@
+﻿@page
+@model TwoFactorAuthenticationModel
+@{
+    ViewData["Title"] = "Two-Factor Authentication";
+}
+
+<section class="flex-grow flex flex-col w-full max-w-2xl bg-white dark:bg-gray-900 p-8 shadow rounded-lg">
+    <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">@ViewData["Title"]</h2>
+
+    <div class="space-y-8">
+        <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Authenticator App</h3>
+
+            @if (Model.HasAuthenticator)
+            {
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    You have an authenticator app configured.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <form method="post" asp-page-handler="ResetAuthenticator">
+                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-200">
+                            Reset Authenticator
+                        </button>
+                    </form>
+
+                    <form method="post" asp-page-handler="DisableAuthenticator">
+                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-200">
+                            Disable 2FA
+                        </button>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    You have not set up an authenticator app yet.
+                </p>
+
+                <a asp-page="./EnableAuthenticator" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-200">
+                    Add Authenticator App
+                </a>
+            }
+        </div>
+
+        @* Recovery Codes section: ONLY show if authenticator is configured *@
+        @if (Model.HasAuthenticator)
+        {
+            <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Recovery Codes</h3>
+
+                @if (Model.RecoveryCodesLeft == 0)
+                {
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        You have no recovery codes left.
+                        <a asp-page="./GenerateRecoveryCodes" class="text-blue-600 dark:text-blue-400 hover:underline">
+                            Generate new codes
+                        </a>.
+                    </p>
+                }
+                else
+                {
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        You have <span class="font-bold">@Model.RecoveryCodesLeft</span> recovery codes left.
+                    </p>
+
+                    <a asp-page="./GenerateRecoveryCodes" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-200">
+                        Generate New Codes
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

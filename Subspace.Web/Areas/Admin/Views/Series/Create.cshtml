@@ -1,0 +1,38 @@
+﻿@model Subspace.Shared.Models.Series
+
+@{
+    ViewData["Title"] = "Create Series";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-6 bg-white dark:bg-gray-900 shadow rounded">
+    <h1 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Add New Series</h1>
+
+    <form asp-action="Create" method="post" class="space-y-4">
+        <div>
+            <label asp-for="Name" class="block font-medium text-gray-700 dark:text-gray-300"></label>
+            <input asp-for="Name" class="form-input w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            <span asp-validation-for="Name" class="text-red-600 dark:text-red-400 text-sm"></span>
+        </div>
+
+        <div>
+            <label asp-for="Abbreviation" class="block font-medium text-gray-700 dark:text-gray-300"></label>
+            <input asp-for="Abbreviation" class="form-input w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            <span asp-validation-for="Abbreviation" class="text-red-600 dark:text-red-400 text-sm"></span>
+        </div>
+
+        <div class="flex space-x-2">
+            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition-colors duration-200">
+                Save
+            </button>
+            <a asp-area="Admin" asp-controller="Series" asp-action="Index"
+               class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-sm font-medium rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
+                Cancel and go back
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

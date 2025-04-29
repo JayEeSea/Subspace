@@ -1,0 +1,11 @@
+﻿@model int
+
+@{
+    var display = Model > 99 ? "99+" : Model.ToString();
+    var badgeColor = Model > 0 ? "bg-red-500" : "bg-gray-500";
+}
+
+<span class="ml-1 text-xs text-white rounded-full px-2 font-semibold @badgeColor"
+      style="padding-right:10px !important;">
+    @display
+</span>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Subspace API Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/docs.css">
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+    <div class="header flex justify-between items-center px-4 py-2 bg-gray-900 text-white">
+        <div>
+            <a href="/" class="hover:underline">← Back to Home</a>
+        </div>
+        <div>
+            <a href="swagger.html" class="hover:underline">View With Swagger</a>
+        </div>
+    </div>
+
+    <div class="redoc-container"></div>
+
+    <!-- Load ReDoc -->
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+
+    <!-- Then initialise it -->
+    <script>
+        // Detect if we are on localhost or production
+        const isLocalhost = window.location.hostname === "localhost" || window.location.hostname.startsWith("127.");
+
+        // Set the API base URL depending on environment
+        const apiBaseUrl = isLocalhost
+            ? "http://localhost:5038" // Dev
+            : "https://api.subspaceapi.com"; // Prod
+
+        // Initialise ReDoc with correct spec-url
+        Redoc.init(apiBaseUrl + "/swagger/v1/swagger.json", {}, document.querySelector('.redoc-container'));
+
+        // Dynamically update the Swagger UI link
+        const swaggerLink = document.getElementById('swagger-link');
+        swaggerLink.href = apiBaseUrl + "/swagger";
+    </script>
+
+    <div class="footer">
+        Powered by Subspace API
+    </div>
+
+</body>
+</html>

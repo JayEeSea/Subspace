@@ -1,0 +1,132 @@
+﻿@model Subspace.Shared.Models.Episode
+
+@{
+    ViewData["Title"] = "Create Episode";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var seriesList = ViewData["SeriesList"] as List<Subspace.Shared.Models.Series>;
+}
+
+<div class="p-6 bg-white dark:bg-gray-800 shadow rounded">
+    <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Add New Episode</h1>
+
+    <form asp-action="Create" method="post" class="space-y-6">
+        <div>
+            <label asp-for="SeriesId" class="block font-medium text-gray-700 dark:text-gray-300">Series</label>
+            <select asp-for="SeriesId" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded px-3 py-2">
+                <option value="">-- Select Series --</option>
+                @foreach (var series in seriesList)
+                {
+                    <option value="@series.Id">@series.Name (@series.Abbreviation)</option>
+                }
+            </select>
+            <span asp-validation-for="SeriesId" class="text-red-600 text-sm"></span>
+        </div>
+
+        <div>
+            <label asp-for="Title" class="block font-medium text-gray-700 dark:text-gray-300">Title</label>
+            <input asp-for="Title" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded px-3 py-2" />
+            <span asp-validation-for="Title" class="text-red-600 text-sm"></span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <label asp-for="Season" class="block font-medium text-gray-700 dark:text-gray-300">Season</label>
+                <input asp-for="Season" type="number" min="1" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded px-3 py-2" />
+                <span asp-validation-for="Season" class="text-red-600 text-sm"></span>
+            </div>
+
+            <div>
+                <label asp-for="EpisodeNumber" class="block font-medium text-gray-700 dark:text-gray-300">Episode #</label>
+                <input asp-for="EpisodeNumber" type="number" min="1" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded px-3 py-2" />
+                <span asp-validation-for="EpisodeNumber" class="text-red-600 text-sm"></span>
+            </div>
+
+            <div>
+                <label asp-for="AirDate" class="block font-medium text-gray-700 dark:text-gray-300">Air Date</label>
+                <input asp-for="AirDate" type="date" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded px-3 py-2" />
+                <span asp-validation-for="AirDate" class="text-red-600 text-sm"></span>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="SelectedTagIds" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Episode Tags</label>
+            <select id="SelectedTagIds" name="SelectedTagIds" multiple
+                    class="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+                    style="height: 250px !important;">
+                @foreach (var tag in ViewData["TagsList"] as List<Subspace.Shared.Models.Tag>)
+                {
+                    <option value="@tag.Id">@tag.Name</option>
+                }
+            </select>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Hold down Ctrl (Cmd on Mac) to select multiple tags.</p>
+        </div>
+
+        <div>
+            <label asp-for="Synopsis" class="block font-medium text-gray-700 dark:text-gray-300">Synopsis</label>
+            <textarea asp-for="Synopsis" rows="4" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded px-3 py-2"></textarea>
+            <span asp-validation-for="Synopsis" class="text-red-600 text-sm"></span>
+        </div>
+
+        <div>
+            <label asp-for="ImdbUrl" class="block font-medium text-gray-700 dark:text-gray-300">IMDb URL</label>
+            <input asp-for="ImdbUrl" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded px-3 py-2" />
+            <span asp-validation-for="ImdbUrl" class="text-red-600 text-sm"></span>
+        </div>
+
+        <div class="flex space-x-4">
+            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+                Save Episode
+            </button>
+            <a asp-area="Admin" asp-controller="Episodes" asp-action="Index"
+               class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-sm font-medium rounded hover:bg-gray-100 dark:hover:bg-gray-700">
+                Cancel and go back
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        let episodeTagSelector;
+
+        function initialiseTomSelect() {
+            if (episodeTagSelector) {
+                episodeTagSelector.destroy();
+            }
+
+            episodeTagSelector = new TomSelect("#SelectedTagIds", {
+                plugins: ['remove_button'],
+                persist: false,
+                create: false,
+                maxItems: null,
+                sortField: {
+                    field: "text",
+                    direction: "asc"
+                },
+                classNames: {
+                    input: 'dark:bg-gray-700 dark:text-gray-100 bg-white text-gray-900',
+                    dropdown: 'dark:bg-gray-800 dark:text-gray-100 bg-white text-gray-900 border border-gray-300 dark:border-gray-600 shadow-md mt-1 rounded',
+                    option: 'cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700',
+                    optionSelected: 'bg-blue-500 text-white',
+                    item: 'dark:bg-gray-700 dark:text-gray-100 bg-white text-gray-900 rounded px-2 py-1 mr-1 mb-1',
+                }
+            });
+
+            const tsWrapper = document.querySelector('.ts-wrapper');
+            if (tsWrapper) {
+                if (document.documentElement.classList.contains('dark')) {
+                    tsWrapper.classList.add('dark:bg-gray-700', 'dark:text-gray-100', 'bg-gray-700', 'text-gray-100', 'border-gray-600');
+                    tsWrapper.classList.remove('bg-white', 'text-gray-900', 'border-gray-300');
+                } else {
+                    tsWrapper.classList.add('bg-white', 'text-gray-900', 'border-gray-300');
+                    tsWrapper.classList.remove('dark:bg-gray-700', 'dark:text-gray-100', 'bg-gray-700', 'text-gray-100', 'border-gray-600');
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initialiseTomSelect();
+        });
+    </script>
+}

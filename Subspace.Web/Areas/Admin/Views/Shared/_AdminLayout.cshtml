@@ -1,0 +1,131 @@
+﻿@{
+    Layout = null;
+    var title = ViewData["Title"] as string ?? "Admin";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        (function() {
+            var isDark = localStorage.getItem('theme') === 'dark' ||
+                (!('theme' in localStorage) &&
+                 window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+            document.documentElement.classList.toggle('dark', isDark);
+            document.documentElement.classList.add(isDark ? 'show-moon' : 'show-sun');
+        })();
+    </script>
+    <style>
+        html.show-sun #sunIcon {
+            display: block !important;
+        }
+
+        html.show-moon #moonIcon {
+            display: block !important;
+        }
+    </style>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@title | Subspace Admin</title>
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/favicon-96x96.png">
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="~/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/apple-icon-180x180.png">
+
+    <!-- Android Icons -->
+    <link rel="icon" type="image/png" sizes="36x36" href="~/android-icon-36x36.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="~/android-icon-48x48.png">
+    <link rel="icon" type="image/png" sizes="72x72" href="~/android-icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/android-icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="~/android-icon-144x144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/android-icon-192x192.png">
+
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 font-sans text-gray-800 dark:text-gray-100 transition-colors duration-300">
+
+    <header class="bg-gray-900 text-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <h1 class="text-lg font-semibold">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Subspace</a>
+            </h1>
+            <nav class="flex items-center space-x-6 relative">
+
+                <!-- Public Links -->
+                <a href="/docs" class="hover:underline">Docs</a>
+
+                <!-- Untagged Episodes -->
+                <a href="/admin/episodes?untagged=true" class="relative">
+                    Untagged Episodes
+                    <span class="ml-1 text-xs bg-red-500 text-white rounded-full px-2 py-0.5">
+                        @await Component.InvokeAsync("UntaggedEpisodeCount")
+                    </span>
+                </a>
+
+                <!-- Admin Links Dropdown -->
+                <div class="relative group">
+                    <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="hover:underline">Admin Dashboard</a>
+                    <div class="absolute top-full left-0 hidden group-hover:block bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-200 rounded shadow-md z-50 min-w-[150px] pt-1">
+                        <a href="/admin/episodes" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Episodes</a>
+                        <a href="/admin/series" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Series</a>
+                        <a href="/admin/tags" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Tags</a>
+                    </div>
+                </div>
+
+                <!-- Identity Area -->
+                <partial name="_IdentityPartial" />
+
+                <!-- Dark Mode Toggle -->
+                <partial name="_DarkModeTogglePartial" />
+
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        @RenderBody()
+    </main>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div id="toast-success"
+             class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded shadow-lg animate-fade-in-out">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @await Html.PartialAsync("_FooterPartial")
+
+    <script src="@(Url.Content("~/js/site.js"))"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.documentElement.classList.add('transition-ready');
+        });
+    </script>
+</body>
+</html>

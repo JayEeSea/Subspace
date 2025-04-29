@@ -1,0 +1,41 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Personal Data";
+}
+
+<section class="flex-grow flex flex-col w-full max-w-2xl bg-white dark:bg-gray-900 p-8 shadow rounded-lg">
+    <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">@ViewData["Title"]</h2>
+
+    <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 space-y-8">
+        <div>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                Your account contains personal data that you have provided.
+                You can download your personal data or request to delete your account.
+            </p>
+
+            <form method="post" asp-page="DownloadPersonalData">
+                <button type="submit" class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-200">
+                    Download Personal Data
+                </button>
+            </form>
+        </div>
+
+        <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <h3 class="text-lg font-semibold text-red-600 dark:text-red-400 mb-4">Delete Account</h3>
+
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                Deleting your account will permanently remove your profile, personal settings, and all associated data.
+                This action cannot be undone.
+            </p>
+
+            <a asp-page="DeletePersonalData" class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-200">
+                Delete Account
+            </a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

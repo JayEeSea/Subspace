@@ -1,0 +1,320 @@
+﻿@using Microsoft.AspNetCore.Html
+@model IEnumerable<Subspace.Shared.Models.Episode>
+
+@{
+    ViewData["Title"] = "Episodes";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var seriesList = ViewData["SeriesList"] as List<Subspace.Shared.Models.Series> ?? new();
+    var selectedSeriesId = ViewData["SelectedSeriesId"] as int?;
+    var selectedSeason = ViewData["SelectedSeason"] as int?;
+    var searchTerm = ViewData["SearchTerm"] as string ?? string.Empty;
+    var seasons = ViewData["AvailableSeasons"] as List<int> ?? new();
+}
+
+@functions {
+    public static HtmlString HighlightMatch(string text, string? search)
+    {
+        if (string.IsNullOrWhiteSpace(search) || string.IsNullOrWhiteSpace(text))
+            return new HtmlString(text);
+
+        var escapedSearch = System.Text.RegularExpressions.Regex.Escape(search);
+        var pattern = $"({escapedSearch})";
+
+        var highlighted = System.Text.RegularExpressions.Regex.Replace(
+            text,
+            pattern,
+            "<strong class=\"text-blue-500 dark:text-blue-400\">$1</strong>",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase
+        );
+
+        return new HtmlString(highlighted);
+    }
+}
+
+<div class="p-6 bg-white dark:bg-gray-900 shadow rounded">
+    <div class="mb-4">
+        <div class="flex justify-between items-center">
+            <a asp-area="" asp-controller="Admin" asp-action="Index"
+               class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-sm font-medium rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+                ← Back to Admin Dashboard
+            </a>
+        </div>
+    </div>
+    <h1 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Manage Episodes</h1>
+
+    @if (searchTerm == "Untagged")
+    {
+        <div class="mb-4 text-sm text-red-600 dark:text-red-400 font-medium">
+            Showing only untagged episodes.
+        </div>
+    }
+
+    <!-- Search Section -->
+    <form asp-area="Admin" asp-action="Index" method="get" class="mb-4 flex flex-wrap items-end gap-4">
+        <div>
+            <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Search by Title or Tag</label>
+
+            <div class="relative">
+                <input type="text" id="search" name="search" value="@searchTerm" placeholder="e.g. The Cage or Klingons"
+                       class="w-64 pr-10 px-3 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+
+                @if (!string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    <a href="@Url.Action("Index", "Episodes", new { area = "Admin" })"
+                       class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                        ✖
+                    </a>
+                }
+
+                @if (Context.Request.Query.ContainsKey("untagged"))
+                {
+                    <input type="hidden" name="untagged" value="true" />
+                }
+            </div>
+        </div>
+
+        <!-- Series Dropdown -->
+        <div>
+            <label for="seriesId" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Filter by Series</label>
+            <select id="seriesId" name="seriesId" class="w-64 px-3 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded shadow-sm" onchange="this.form.submit()">
+                <option value="">-- All Series --</option>
+                @foreach (var series in seriesList)
+                {
+                    <option value="@series.Id" selected="@(series.Id == selectedSeriesId ? "selected" : null)">
+                        @series.Abbreviation
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- Season Dropdown -->
+        @if (selectedSeriesId.HasValue && seasons.Any())
+        {
+            <div>
+                <label for="season" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Filter by Season</label>
+                <select id="season" name="season" class="w-64 px-3 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded shadow-sm" onchange="this.form.submit()">
+                    <option value="">-- All Seasons --</option>
+                    @foreach (var s in seasons)
+                    {
+                        <option value="@s" selected="@(s == selectedSeason ? "selected" : null)">
+                            Season @s
+                        </option>
+                    }
+                </select>
+            </div>
+        }
+
+        <div>
+            <a href="@Url.Action("Index", "Episodes", new { area = "Admin" })"
+               class="mt-5 inline-block bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded hover:bg-gray-400 dark:hover:bg-gray-600">
+                Reset
+            </a>
+        </div>
+    </form>
+
+    <a asp-area="Admin" asp-action="Create" class="inline-block mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        + Add New Episode
+    </a>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+            <thead class="bg-gray-100 dark:bg-gray-800 text-left">
+                <tr>
+                    <th class="px-4 py-2 text-gray-700 dark:text-gray-300">Series</th>
+                    <th class="px-4 py-2 text-gray-700 dark:text-gray-300">Season</th>
+                    <th class="px-4 py-2 text-gray-700 dark:text-gray-300">Ep#</th>
+                    <th class="px-4 py-2 text-gray-700 dark:text-gray-300">Title</th>
+                    <th class="px-4 py-2 whitespace-nowrap w-32 text-gray-700 dark:text-gray-300">Air Date</th>
+                    <th class="px-4 py-2 whitespace-nowrap w-32 text-gray-700 dark:text-gray-300">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-100 dark:divide-gray-700">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800">
+                        <td class="px-4 py-2 text-gray-900 dark:text-gray-100">@item.Series?.Abbreviation</td>
+                        <td class="px-4 py-2 text-gray-900 dark:text-gray-100">@item.Season</td>
+                        <td class="px-4 py-2 text-gray-900 dark:text-gray-100">@item.EpisodeNumber</td>
+                        <td class="px-4 py-2 align-top">
+                            <div class="font-medium text-gray-900 dark:text-gray-100">
+                                <span class="relative group cursor-pointer inline-block">
+                                    @HighlightMatch(item.Title, searchTerm)
+                                    <div class="absolute bottom-full left-0 mb-2 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none">
+                                        ID: @item.Id
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="mt-1 text-[11px] text-gray-500 dark:text-gray-400 leading-snug flex flex-wrap items-start gap-1">
+                                <span class="font-semibold text-gray-400 dark:text-gray-500 mr-1">Tags:</span>
+                                @if (item.EpisodeTags?.Any() == true)
+                                {
+                                    @foreach (var tag in item.EpisodeTags.Select(et => et.Tag))
+                                    {
+                                        <span class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 px-2 py-0.5 rounded whitespace-nowrap">
+                                            @HighlightMatch(tag.Name, searchTerm)
+                                        </span>
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="italic text-gray-400 dark:text-gray-500">No tags assigned</span>
+                                }
+                            </div>
+                        </td>
+                        <td class="px-4 py-2 whitespace-nowrap w-32 text-gray-900 dark:text-gray-100">@item.AirDate.ToString("yyyy-MM-dd")</td>
+                        <td class="px-4 py-2 space-x-2 whitespace-nowrap w-32">
+                            <a asp-area="Admin" asp-action="Edit"
+                               asp-route-id="@item.Id"
+                               asp-route-returnUrl="@Context.Request.QueryString"
+                               class="text-blue-600 dark:text-blue-400 hover:underline">
+                                Edit
+                            </a>
+                            <a asp-area="Admin" asp-action="Delete" asp-route-id="@item.Id" class="text-red-600 dark:text-red-400 hover:underline">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @{
+        var currentPage = ViewData["CurrentPage"] as int? ?? 1;
+        var totalPages = ViewData["TotalPages"] as int? ?? 1;
+        var pageWindow = 2;
+    }
+
+    @if (totalPages > 1)
+    {
+        <nav class="mt-8 flex justify-center">
+            <ul class="inline-flex flex-wrap items-center gap-1">
+                <!-- Previous Button -->
+                <li>
+                    @if (currentPage > 1)
+                    {
+                        <a asp-area="Admin" asp-action="Index"
+                           asp-route-page="@(currentPage - 1)"
+                           asp-route-search="@searchTerm"
+                           asp-route-seriesId="@(selectedSeriesId ?? (int?)null)"
+                           asp-route-season="@(selectedSeason ?? (int?)null)"
+                           class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded hover:bg-blue-100 dark:hover:bg-blue-900">
+                            &laquo; Prev
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-400 cursor-not-allowed">
+                            &laquo; Prev
+                        </span>
+                    }
+                </li>
+
+                <!-- Always show Page 1 -->
+                <li>
+                    @if (currentPage == 1)
+                    {
+                        <span class="px-3 py-2 bg-blue-600 text-white rounded">
+                            1
+                        </span>
+                    }
+                    else
+                    {
+                        <a asp-area="Admin" asp-action="Index"
+                           asp-route-page="1"
+                           asp-route-search="@searchTerm"
+                           asp-route-seriesId="@(selectedSeriesId ?? (int?)null)"
+                           asp-route-season="@(selectedSeason ?? (int?)null)"
+                           class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded hover:bg-blue-100 dark:hover:bg-blue-900">
+                            1
+                        </a>
+                    }
+                </li>
+
+                <!-- Ellipsis after page 1 if needed -->
+                @if (currentPage - pageWindow > 2)
+                {
+                    <li>
+                        <span class="px-3 py-2 text-gray-500 dark:text-gray-400">...</span>
+                    </li>
+                }
+
+                <!-- Pages around current page -->
+                @for (int i = Math.Max(2, currentPage - pageWindow); i <= Math.Min(totalPages - 1, currentPage + pageWindow); i++)
+                {
+                    <li>
+                        @if (i == currentPage)
+                        {
+                            <span class="px-3 py-2 bg-blue-600 text-white rounded">
+                                @i
+                            </span>
+                        }
+                        else
+                        {
+                            <a asp-area="Admin" asp-action="Index"
+                               asp-route-page="@i"
+                               asp-route-search="@searchTerm"
+                               asp-route-seriesId="@(selectedSeriesId ?? (int?)null)"
+                               asp-route-season="@(selectedSeason ?? (int?)null)"
+                               class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded hover:bg-blue-100 dark:hover:bg-blue-900">
+                                @i
+                            </a>
+                        }
+                    </li>
+                }
+
+                <!-- Ellipsis before last page if needed -->
+                @if (currentPage + pageWindow < totalPages - 1)
+                {
+                    <li>
+                        <span class="px-3 py-2 text-gray-500 dark:text-gray-400">...</span>
+                    </li>
+                }
+
+                <!-- Last Page -->
+                @if (totalPages > 1)
+                {
+                    <li>
+                        @if (currentPage == totalPages)
+                        {
+                            <span class="px-3 py-2 bg-blue-600 text-white rounded">
+                                @totalPages
+                            </span>
+                        }
+                        else
+                        {
+                            <a asp-area="Admin" asp-action="Index"
+                               asp-route-page="@totalPages"
+                               asp-route-search="@searchTerm"
+                               asp-route-seriesId="@(selectedSeriesId ?? (int?)null)"
+                               asp-route-season="@(selectedSeason ?? (int?)null)"
+                               class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded hover:bg-blue-100 dark:hover:bg-blue-900">
+                                @totalPages
+                            </a>
+                        }
+                    </li>
+                }
+
+                <!-- Next Button -->
+                <li>
+                    @if (currentPage < totalPages)
+                    {
+                        <a asp-area="Admin" asp-action="Index"
+                           asp-route-page="@(currentPage + 1)"
+                           asp-route-search="@searchTerm"
+                           asp-route-seriesId="@(selectedSeriesId ?? (int?)null)"
+                           asp-route-season="@(selectedSeason ?? (int?)null)"
+                           class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded hover:bg-blue-100 dark:hover:bg-blue-900">
+                            Next &raquo;
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="px-3 py-2 border border-gray-300 dark:border-gray-700 text-gray-400 cursor-not-allowed">
+                            Next &raquo;
+                        </span>
+                    }
+                </li>
+            </ul>
+        </nav>
+    }
+</div>

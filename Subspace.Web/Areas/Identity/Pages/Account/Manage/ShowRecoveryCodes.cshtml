@@ -1,0 +1,35 @@
+﻿@page
+@model ShowRecoveryCodesModel
+@{
+    ViewData["Title"] = "Recovery Codes";
+}
+
+<section class="flex-grow flex flex-col w-full max-w-2xl mx-auto p-6 bg-white dark:bg-gray-900 shadow rounded-lg">
+    <h2 class="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">@ViewData["Title"]</h2>
+
+    <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 space-y-8">
+        <div class="text-center">
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                These are your recovery codes. Save them securely. You won't be able to view them again once you leave this page.
+            </p>
+        </div>
+
+        @if (Model.RecoveryCodes != null && Model.RecoveryCodes.Length > 0)
+        {
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                @foreach (var code in Model.RecoveryCodes)
+                {
+                    <div class="bg-gray-100 dark:bg-gray-700 text-center py-3 rounded-lg font-mono tracking-wide text-gray-800 dark:text-gray-100">
+                        @code
+                    </div>
+                }
+            </div>
+
+            <div class="mt-6 text-center">
+                <p class="text-red-600 dark:text-red-400 font-semibold">
+                    Keep these codes safe! If you lose your authenticator device, these codes will let you log back in.
+                </p>
+            </div>
+        }
+    </div>
+</section>
